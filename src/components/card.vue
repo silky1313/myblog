@@ -1,8 +1,8 @@
 <template>
   <el-card class="box-card">
     <div class="clearfix">
-      <span>{{ props.maintitle }}</span>
-      <el-button class="button">点击按钮进入文章</el-button>
+      <span>{{ maintitle.name }}</span>
+      <el-button class="button" @click="$emit('intoArticle')">点击按钮进入文章</el-button>
     </div>
     <div class="text item">
       还不知道再这里写一些什么先写一点点占据一点空间，感觉可以写文章的主要内容
@@ -11,8 +11,7 @@
 </template>
 
 <script setup>
-const props = defineProps(['maintitle']);
-console.log(props.maintitle);
+defineProps(['maintitle']);
 </script>
 
 <style>

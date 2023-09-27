@@ -1,19 +1,21 @@
 <template>
   <div class="main-container">
     <mynav class="main-nav" />
+    <!-- 字符串传props可以考虑不使用v-bind 其他的都得使用 -->
     <card
       :class="{ ['suffix-' + index]: true }"
       v-for="(item, index) in maintitle"
       :key="index"
+      v-show="item.show"
       :maintitle="item"
+      @intoArticle="changeShowArticle(index)"
     ></card>
+
+    <Article clas="main-article" :showArticleIndex="showArtilceIndex"></Article>
+
     <myinformation class="main-information" />
     <footer class="main-footer">
-      京 ICP 证 110745 号 · 京 ICP 备 13052560 号 - 1 · 京公网安备 11010802020088 号 ·
-      京网文[2022]2674-081 号 · 药品医疗器械网络信息服务备案（京）网药械信息备字（2022）第00334号 ·
-      广播电视节目制作经营许可证:（京）字第06591号 · 服务热线：400-919-0001 · Investor Relations · ©
-      2023 知乎 北京智者天下科技有限公司版权所有 · 违法和不良信息举报：010-82716601 ·
-      举报邮箱：jubao@zhihu.com
+      hello, this is my footer, there is not important information, please ingore this.
     </footer>
   </div>
 </template>
@@ -22,9 +24,29 @@
 import mynav from './components/mynav.vue';
 import card from './components/card.vue';
 import myinformation from './components/myinf.vue';
+import Article from './components/article.vue';
 import { ref } from 'vue';
 
-const maintitle = ref(['LCA', 'DP', 'TwoPoint']);
+//show为true代表显示卡片
+const maintitle = ref([
+  { name: '二维前缀和和差分', show: true },
+  { name: '背包dp', show: true },
+  {
+    name: 'P1967 [NOIP2013 提高组] 货车运输 - 洛谷',
+    show: true
+  }
+]);
+
+let showArtilceIndex = ref(-1);
+
+function changeShowArticle(index) {
+  //TODO:首先卡片先都不渲染
+  for (let i = 0; i < maintitle.value.length; i++) {
+    maintitle.value[i].show = false;
+  }
+
+  showArtilceIndex = index;
+}
 </script>
 
 <style>
@@ -37,27 +59,31 @@ const maintitle = ref(['LCA', 'DP', 'TwoPoint']);
   margin: 0 auto;
   gap: 30px;
 }
-
 .main-nav {
   grid-column: 1 / span 3;
   grid-row: 1 / -1;
 }
 
+.main-article {
+  grid-column: 1 / 3;
+  grid-row: 2 / -1;
+}
+
 .suffix-0 {
-  grid-column: 1 / 2;
+  grid-column: 1 / 3;
   grid-row: 2 / 3;
 }
 .suffix-1 {
-  grid-column: 1 / 2;
+  grid-column: 1 / 3;
   grid-row: 3 / 4;
 }
 .suffix-2 {
-  grid-column: 1 / 2;
+  grid-column: 1 / 3;
   grid-row: 4 / 5;
 }
 
 .main-information {
-  grid-column: 2 / 3;
+  grid-column: 3 / 4;
   grid-row: 2 / 5;
 }
 
@@ -68,4 +94,6 @@ const maintitle = ref(['LCA', 'DP', 'TwoPoint']);
   grid-row: 6 / 5;
 }
 </style>
+
+
 

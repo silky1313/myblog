@@ -1,7 +1,7 @@
 <template>
   <div class="myinf-container">
     <div>
-      <el-avatar src="../../public/head.png" class="myinf-head"></el-avatar>
+      <el-avatar src="/head.png" class="myinf-head"></el-avatar>
     </div>
 
     <el-descriptions title="个人信息" :column="3" border>
