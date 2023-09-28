@@ -1,5 +1,6 @@
 <template>
   <div class="article-container">
+    <el-button type="primary" plain @click="$emit('intocard')">返回首页</el-button>
     <p v-for="(item, index) in maintitle" :key="index" v-show="showArticleIndex === index">
       <span v-html="renderedMarkdown[index]"></span>
     </p>
@@ -35,6 +36,7 @@ onMounted(async () => {
 <style scoped>
 .article-container {
   font-size: 20px;
+  display: grid;
 }
 /* 根据需要添加样式 */
 </style>

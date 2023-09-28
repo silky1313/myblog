@@ -1,21 +1,27 @@
 <template>
   <div class="main-container">
-    <mynav class="main-nav" />
-    <!-- 字符串传props可以考虑不使用v-bind 其他的都得使用 -->
+    <mynav class="main-nav" @changeIndex="handleNavIndexChange" />
     <card
       :class="{ ['suffix-' + index]: true }"
       v-for="(item, index) in maintitle"
       :key="index"
-      v-show="item.show"
+      v-show="item.show && activeIndex == '1'"
       :maintitle="item"
       @intoArticle="changeShowArticle(index)"
     ></card>
 
-    <Article clas="main-article" :showArticleIndex="showArtilceIndex"></Article>
+    <Article
+      class="main-article"
+      v-show="showArtilceIndex >= 0 && activeIndex == '1'"
+      :showArticleIndex="showArtilceIndex"
+      @intocard="changeShowCard()"
+    ></Article>
+
+    <publish v-if="activeIndex === '2'"></publish>
 
     <myinformation class="main-information" />
     <footer class="main-footer">
-      hello, this is my footer, there is not important information, please ingore this.
+      hello, this is my footer, there is not important information, please ignore this.
     </footer>
   </div>
 </template>
@@ -25,9 +31,9 @@ import mynav from './components/mynav.vue';
 import card from './components/card.vue';
 import myinformation from './components/myinf.vue';
 import Article from './components/article.vue';
+import publish from './components/publish.vue';
 import { ref } from 'vue';
 
-//show为true代表显示卡片
 const maintitle = ref([
   { name: '二维前缀和和差分', show: true },
   { name: '背包dp', show: true },
@@ -37,15 +43,27 @@ const maintitle = ref([
   }
 ]);
 
-let showArtilceIndex = ref(-1);
+const showArtilceIndex = ref(-1); // 修改为 const
+const activeIndex = ref(1); // 修改为 const
+
+const handleNavIndexChange = (index) => {
+  activeIndex.value = index;
+  console.log(activeIndex.value);
+};
 
 function changeShowArticle(index) {
-  //TODO:首先卡片先都不渲染
   for (let i = 0; i < maintitle.value.length; i++) {
     maintitle.value[i].show = false;
   }
 
-  showArtilceIndex = index;
+  showArtilceIndex.value = index; // 修改为 showArtilceIndex.value
+}
+
+function changeShowCard() {
+  for (let i = 0; i < maintitle.value.length; i++) {
+    maintitle.value[i].show = true;
+  }
+  showArtilceIndex.value = -1; // 修改为 showArtilceIndex.value
 }
 </script>
 
@@ -94,6 +112,3 @@ function changeShowArticle(index) {
   grid-row: 6 / 5;
 }
 </style>
-
-
-
