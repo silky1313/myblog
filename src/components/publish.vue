@@ -38,7 +38,7 @@ function submit() {
   innerVisible.value = true;
 
   setTimeout(3000);
-
+ 
   innerVisible.value = true;
   outerVisible.value = false;
 }

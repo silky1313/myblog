@@ -79,12 +79,12 @@ function changeShowCard() {
 }
 .main-nav {
   grid-column: 1 / span 3;
-  grid-row: 1 / -1;
+  grid-row: 1 / 2;
 }
 
 .main-article {
   grid-column: 1 / 3;
-  grid-row: 2 / -1;
+  grid-row: 2 / 5;
 }
 
 .suffix-0 {

@@ -35,8 +35,8 @@ onMounted(async () => {
 
 <style scoped>
 .article-container {
-  font-size: 20px;
   display: grid;
+  font-size: 20px;
 }
 /* 根据需要添加样式 */
 </style>
