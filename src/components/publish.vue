@@ -1,14 +1,15 @@
 <template>
   <div class="publish-container">
     <P>请输入你的文章标题</P>
-    <el-input v-model="title" autosize type="textarea" placeholder="Please input your title" />
+    <el-input v-model="title" size="small" type="textarea" placeholder="Please input your title" />
 
-    <P>请输入文章内容</P>
+    <P>请输入文章内容(md文件)</P>
     <el-input
-      autosize
+      size="large"
       v-model="mainContext"
       type="textarea"
       placeholder="Please input your mainContext"
+      class="article-content"
     />
 
     <el-button type="primary" plain @click="outerVisible = true">submit your title</el-button>
@@ -38,7 +39,7 @@ function submit() {
   innerVisible.value = true;
 
   setTimeout(3000);
- 
+
   innerVisible.value = true;
   outerVisible.value = false;
 }
@@ -47,7 +48,11 @@ function submit() {
 <style>
 .publish-container {
   display: grid;
-  gap: 30px;
+  gap: 20px;
   margin: 0 auto;
+}
+.article-content .el-textarea__inner {
+  width: 500px;
+  height: 300px;
 }
 </style>

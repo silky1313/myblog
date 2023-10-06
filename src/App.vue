@@ -75,7 +75,7 @@ function changeShowCard() {
   width: 1200px;
   /* 设置居中 */
   margin: 0 auto;
-  gap: 30px;
+  gap: 50px;
 }
 .main-nav {
   grid-column: 1 / span 3;
