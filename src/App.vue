@@ -19,6 +19,12 @@
 
     <publish v-if="activeIndex === '2'"></publish>
 
+    <myvedio v-if="activeIndex === '3'" class="main-vedio"></myvedio>
+
+    <mygame v-if="activeIndex === '4'" class="main-game"></mygame>
+
+    <mylink v-if="activeIndex === '5'" class="main-link"></mylink>
+
     <myinformation class="main-information" />
     <footer class="main-footer">
       hello, this is my footer, there is not important information, please ignore this.
@@ -32,6 +38,9 @@ import card from './components/card.vue';
 import myinformation from './components/myinf.vue';
 import Article from './components/article.vue';
 import publish from './components/publish.vue';
+import myvedio from './components/vedio.vue';
+import mygame from './components/mygame.vue';
+import mylink from './components/mylink.vue';
 import { ref } from 'vue';
 
 const maintitle = ref([
@@ -76,6 +85,13 @@ function changeShowCard() {
   /* 设置居中 */
   margin: 0 auto;
   gap: 50px;
+}
+
+.main-vedio,
+.main-game,
+.main-link {
+  grid-column: 1 / 3;
+  grid-row: 2 / 5;
 }
 .main-nav {
   grid-column: 1 / span 3;
